@@ -1,31 +1,34 @@
-import { useState } from "react";
 import "./App.css";
+import { useReducer } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import { LayoutComponent } from "./components/LayoutComponent";
 import { HomePage } from "./pages/HomePage";
 import { MyPhotosPage } from "./pages/MyPhotosPage";
+import { ImageProvider } from "./contexts/AppContext";
+import { LayoutComponent } from "./components/LayoutComponent";
 
-function App() {
-  const [images, setImages] = useState([]);
+export const  App = () => {
+  const reducerHandler = (state, action) => {
+    console.log(state)
+    console.log(action)
+    if(action.type == "setImages"){
+      return action.payload
+    }
+  }
+
+  const [state, dispatch] = useReducer(reducerHandler, "");
 
   return (
-    <>
+    <ImageProvider>
       <BrowserRouter>
         <Routes>
-          <Route element={<LayoutComponent />}>
-            <Route element={<HomePage />}></Route>
-            <Route element={<MyPhotosPage/>}></Route>
+          <Route element={<LayoutComponent/>}>
+            <Route index element={<HomePage />} path=""></Route>
+            <Route element={<MyPhotosPage />} path="/myphotos"></Route>
           </Route>
         </Routes>
       </BrowserRouter>
-      <div>
-        <h1>Hello World</h1>
-        {images.map((image) => (
-          <img src={image.url} alt="" />
-        ))}
-      </div>
-    </>
+    </ImageProvider>
   );
 }
 
