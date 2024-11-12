@@ -1,15 +1,19 @@
-import { useContext, useState } from "react";
-import { ImageContext } from "../contexts/AppContext";
+import { useContext, useState, useEffect } from "react";
+import { AppContext, useAppContext } from "../contexts/AppContext";
 
 
 export const MyPhotosPage = () => {
-  const { images } = useContext(ImageContext);
+  const { images } = useContext(AppContext);
+  const { setPageTitle } = useAppContext();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleClick = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  useEffect(() => {
+    setPageTitle("My Photos")
+  }, [setPageTitle])
 
   return (
       <section className="images">

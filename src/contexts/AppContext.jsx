@@ -1,10 +1,11 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
-export const ImageContext = createContext()
+export const AppContext = createContext()
+export const useAppContext = () => useContext(AppContext);
 
-export const ImageProvider = ({ children }) => {
+export const ContextProvider = ({ children }) => {
     const [images, setImages] = useState([]);
-
+    const [pageTitle, setPageTitle] = useState("Welcome")
     useEffect(() => {
         fetch('https://api.unsplash.com/photos/?client_id=Gi9Lr6UN_06J2rHzAIa8UfTD3i8feudPlUEPZHXWbWs')
           .then((response) => response.json())
@@ -13,8 +14,13 @@ export const ImageProvider = ({ children }) => {
       }, []);
 
       return (
-        <ImageContext.Provider value={{ images }}>
+        <AppContext.Provider value={{
+          images,
+          setImages,
+          pageTitle,
+          setPageTitle
+          }}>
           { children }
-        </ImageContext.Provider>
+        </AppContext.Provider>
       );
 }

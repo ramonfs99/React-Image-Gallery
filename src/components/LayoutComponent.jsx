@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { useAppContext } from "../contexts/AppContext";
 
 export const LayoutComponent = () => {
+  const { pageTitle } = useAppContext();
   return (
     <>
       <header className="header">
@@ -23,7 +25,7 @@ export const LayoutComponent = () => {
               alt=""
             />
           </div>
-          <h1 className="header__jumbotron__welcome">Welcome</h1>
+          <h1 className="header__jumbotron__welcome">{pageTitle}</h1>
           <input type="text" className="header__jumbotron__searchbar" />
         </div>
       </header>
