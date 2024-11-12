@@ -3,7 +3,7 @@ import { AppContext, useAppContext } from "../contexts/AppContext";
 
 export const HomePage = () => {
   const { images } = useContext(AppContext);
-  const { setPageTitle } = useAppContext();
+  const { setPageTitle, toggleImageInLocalStorage } = useAppContext();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleClick = (index) => {
@@ -22,7 +22,7 @@ export const HomePage = () => {
             <img className="images__image-container__image" src={image.urls.raw} alt={image.alt_description} />
             <button className="images__image-container__button"><img src=".\src\assets\icons\icons8-edit-96.png" alt="edit" /></button>
             <button className="images__image-container__button"><img src=".\src\assets\icons\icons8-download-100.png" alt="download" /></button>
-            <button className="images__image-container__button"><img src=".\src\assets\icons\icons8-heart-64.png" alt="heart" /></button>
+            <button className="images__image-container__button" onClick={() => toggleImageInLocalStorage(image)}><img src=".\src\assets\icons\icons8-heart-64.png" alt="heart" /></button>
           </article>
         ))}
       </section>

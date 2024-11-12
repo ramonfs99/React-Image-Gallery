@@ -102,6 +102,7 @@ html, body {
 .images__image-container__image {
   display: block;
   width: 100%;
+  min-width: 200px;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
