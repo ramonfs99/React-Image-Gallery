@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
 
 export const ImageContext = createContext()
 

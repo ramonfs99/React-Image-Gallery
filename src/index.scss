@@ -1,6 +1,6 @@
-body{
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
 .header {
   height: 500px;
@@ -17,8 +17,8 @@ body{
     &__logo {
       position: absolute;
       font-size: 2.75em;
-      margin-top: 30px;
-      margin-left: 50px;
+      margin-top: 40px;
+      margin-left: 80px;
     }
     &__list {
       left: 2000px;
@@ -27,7 +27,7 @@ body{
         position: relative;
         left: 2000px;
         display: inline-block;
-        margin: 30px;
+        margin: 40px;
         a {
           text-decoration: none;
           color: white;
@@ -54,23 +54,106 @@ body{
       }
     }
 
-    &__welcome{
-        position: absolute;
-        top: 10%;
-        left: 46.5%;
-        font-family: sans-serif;
-        font-weight: normal;
-        font-size: 2.5em;
-        color: white;
+    &__welcome {
+      position: absolute;
+      top: 10%;
+      left: 46.5%;
+      font-family: sans-serif;
+      font-weight: normal;
+      font-size: 2.5em;
+      color: white;
     }
 
-    &__searchbar{
-        position: absolute;
-        top: 20%;
-        left: 40%;
-        border-radius: 40px;
-        width: 20%;
-        height: 60px;
+    &__searchbar {
+      position: absolute;
+      top: 20%;
+      left: 40%;
+      border-radius: 40px;
+      padding-right: 12%;
+      padding-left: 2%;
+      padding-top: 30px;
+      padding-bottom: 30px;
     }
+  }
+}
+
+.images {
+  margin-top: 4%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 4%;
+  padding-right: 4%;
+  &__image-container {
+    flex: 1 1 30%;
+    width: 100%;
+    overflow: visible;
+    width: 600px;
+    height: 360px;
+    margin-bottom: 100px;
+    margin-inline: 20px;
+
+    transition: transform 0.3s ease-in-out;
+    &__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 1s ease;
+    }
+
+    &.active &__image {
+      transform: scale(1.2);
+      object-fit: contain;
+      width: 100%;
+      height: auto;
+    }
+
+    &__button {
+      position: relative;
+      bottom: 90%;
+      left: 60%;
+      margin-right: 5%;
+      background-color: rgba(
+        255,
+        255,
+        255,
+        1
+      );
+      color: black;
+      border: none;
+      padding-inline: 8px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+
+      &hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: black;
+      }
+      &--like {
+      }
+      &--download {
+      }
+      &--edit {
+      }
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    &:hover &__button {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    &.active &__button {
+      visibility: hidden;
+    }
+    
   }
 }
