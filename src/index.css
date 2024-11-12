@@ -1,6 +1,12 @@
-body {
+html, body {
+  overflow-x: hidden;
+  width: 100%;
   margin: 0;
   padding: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .header {
@@ -84,7 +90,7 @@ body {
   overflow: visible;
   width: 600px;
   height: 360px;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
   margin-inline: 20px;
   transition: transform 0.3s ease-in-out;
 }
