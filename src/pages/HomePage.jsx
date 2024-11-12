@@ -7,7 +7,6 @@ export const HomePage = () => {
   console.log(images)
   return (
     <>
-      <h2>Images Page</h2>
       <div>
         {images.map((image) => (
           <div key={image.id}>

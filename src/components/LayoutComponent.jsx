@@ -5,6 +5,7 @@ export const LayoutComponent = () => {
     <>
       <header className="header">
         <nav className="header__navbar">
+          <p className="header__navbar__logo">Gallery</p>
           <ul className="header__navbar__list">
             <li className="header__navbar__list__item">
               <NavLink to="/">Home</NavLink>
@@ -15,8 +16,15 @@ export const LayoutComponent = () => {
           </ul>
         </nav>
         <div className="header__jumbotron">
-            <img src="" alt="" />
-            <input type="text" className="header__jumbotron__searchbar"/>
+          <div className="header__jumbotron__background-image-container">
+            <img
+              className="header__jumbotron__background-image-container__background-image"
+              src="src\assets\jumbotron-background.jpg"
+              alt=""
+            />
+          </div>
+          <h1 className="header__jumbotron__welcome">Welcome</h1>
+          <input type="text" className="header__jumbotron__searchbar" />
         </div>
       </header>
       <main>
