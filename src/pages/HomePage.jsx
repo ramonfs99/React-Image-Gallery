@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext, useAppContext } from "../contexts/AppContext";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleImage } from "../slices/ImageSlice";
+import { saveAs } from "file-saver";
 
 export const HomePage = () => {
   const { images } = useContext(AppContext);
@@ -26,6 +27,12 @@ export const HomePage = () => {
     image.alt_description?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const downloadImageHandler = (imageUrl, imageDescription) =>{
+    const imageDescriptionFormatted = imageDescription.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') + '.jpg'
+    const fileName = imageDescription ? `${imageDescriptionFormatted}` : "downloaded-image.jpg";
+    saveAs(imageUrl, fileName)
+  } 
+
   return (
     <section className="images">
       {filteredImages.map((image, index) => (
@@ -44,7 +51,7 @@ export const HomePage = () => {
           <button className="images__image-container__button">
             <img src=".\src\assets\icons\icons8-edit-96.png" alt="edit" />
           </button>
-          <button className="images__image-container__button">
+          <button className="images__image-container__button" onClick={() => downloadImageHandler(image.urls.full, image.alt_description)}>
             <img
               src=".\src\assets\icons\icons8-download-100.png"
               alt="download"
