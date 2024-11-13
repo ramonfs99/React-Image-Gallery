@@ -1,5 +1,4 @@
 import "./App.css";
-import { useReducer } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
@@ -10,15 +9,6 @@ import { LayoutComponent } from "./components/LayoutComponent";
 import { store } from "./store";
 
 export const  App = () => {
-  /*const reducerHandler = (state, action) => {
-    console.log(state)
-    console.log(action)
-    if(action.type == "setImages"){
-      return action.payload
-    }
-  }
-
-  const [state, dispatch] = useReducer(reducerHandler, "");*/
 
   return (
     <Provider store={store}>

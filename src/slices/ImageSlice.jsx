@@ -28,4 +28,4 @@ export const imageSlice = createSlice({
     }
 })
 export const { toggleImage } = imageSlice.actions;
-export default imageSlice.reducer;
+export const imageReducer = imageSlice.reducer;

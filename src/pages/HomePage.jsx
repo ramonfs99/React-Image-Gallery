@@ -9,6 +9,7 @@ export const HomePage = () => {
   const dispatch = useDispatch();
   const storedImages = useSelector((state) => state.images.storedImages);
   const [activeIndex, setActiveIndex] = useState(null);
+  const searchTerm = useSelector((state) => state.search.searchTerm);
 
   const handleClick = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -21,9 +22,13 @@ export const HomePage = () => {
   const isImageStored = (imageId) =>
     storedImages.some((image) => image.id === imageId);
 
+  const filteredImages = images.filter((image) =>
+    image.alt_description?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <section className="images">
-      {images.map((image, index) => (
+      {filteredImages.map((image, index) => (
         <article
           className={`images__image-container ${
             activeIndex === index ? "active" : ""
@@ -49,7 +54,14 @@ export const HomePage = () => {
             className="images__image-container__button"
             onClick={() => dispatch(toggleImage(image))}
           >
-            {isImageStored(image.id) ? <img src=".\src\assets\icons\icons8-dislike-96.png" alt="dislike" /> :  <img src=".\src\assets\icons\icons8-heart-64.png" alt="heart" />}
+            {isImageStored(image.id) ? (
+              <img
+                src=".\src\assets\icons\icons8-dislike-96.png"
+                alt="dislike"
+              />
+            ) : (
+              <img src=".\src\assets\icons\icons8-heart-64.png" alt="heart" />
+            )}
           </button>
         </article>
       ))}

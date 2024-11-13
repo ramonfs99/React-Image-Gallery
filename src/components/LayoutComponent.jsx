@@ -1,9 +1,17 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import jumbotronBackground from "../assets/jumbotron-background.jpg"
+import { useDispatch } from "react-redux";
+import { setSearchTerm } from "../slices/SearchSlice";
 
 export const LayoutComponent = () => {
   const { pageTitle } = useAppContext();
+  const dispatch = useDispatch();
+
+const searchChangeHandler = e => {
+  dispatch(setSearchTerm(e.target.value));
+}
+
   return (
     <>
       <header className="header">
@@ -27,7 +35,7 @@ export const LayoutComponent = () => {
             />
           </div>
           <h1 className="header__jumbotron__welcome">{pageTitle}</h1>
-          <input type="text" className="header__jumbotron__searchbar" />
+          <input type="text" className="header__jumbotron__searchbar" onChange={searchChangeHandler}/>
         </div>
       </header>
       <main>
