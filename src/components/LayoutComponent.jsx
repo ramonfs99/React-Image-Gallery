@@ -65,6 +65,7 @@ export const LayoutComponent = () => {
             placeholder="Search"
             onChange={searchChangeHandler}
           />
+          <img className="header__jumbotron__searchbar-icon" src=".\src\assets\icons\icons8-search-100.png" alt="" />
         </div>
       </header>
 
