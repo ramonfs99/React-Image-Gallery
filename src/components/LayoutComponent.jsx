@@ -1,9 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
-import jumbotronBackground from "../assets/jumbotron-background.jpg";
 import { useDispatch } from "react-redux";
 import { setSearchTerm } from "../slices/SearchSlice";
 import { useState, useRef, useEffect } from "react";
+import jumbotronBackground from "../assets/jumbotron-background.jpg";
+import menuIcon from "../assets/icons/icons8-menu-100.png";
+import searchbarIcon from "../assets/icons/icons8-search-100.png";
 
 export const LayoutComponent = () => {
   const { pageTitle } = useAppContext();
@@ -47,7 +49,7 @@ export const LayoutComponent = () => {
             </li>
           </ul>
           <button className="header__navbar__hamburger" onClick={toggleMenu}>
-            <img src=".\src\assets\icons\icons8-menu-100.png" alt="menu" />
+            <img src={menuIcon} alt="menu" />
           </button>
         </nav>
         <div className="header__jumbotron">
@@ -65,7 +67,7 @@ export const LayoutComponent = () => {
             placeholder="Search"
             onChange={searchChangeHandler}
           />
-          <img className="header__jumbotron__searchbar-icon" src=".\src\assets\icons\icons8-search-100.png" alt="" />
+          <img className="header__jumbotron__searchbar-icon" src={searchbarIcon} alt="" />
         </div>
       </header>
 

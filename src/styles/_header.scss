@@ -36,9 +36,8 @@
     &__hamburger {
       display: none;
     }
-
   }
-  
+
   &__jumbotron {
     &__background-image-container {
       height: 500px;
@@ -82,7 +81,7 @@
       font-size: 1em;
     }
 
-    &__searchbar-icon{
+    &__searchbar-icon {
       width: 32px;
       position: absolute;
       top: 25.5%;
@@ -112,7 +111,7 @@
         position: absolute;
         top: 40px;
         right: 10%;
-        img{
+        img {
           width: 32px;
         }
       }
@@ -147,7 +146,7 @@
         font-size: 2.5em;
         color: white;
       }
-  
+
       &__searchbar {
         width: 60%;
         align-self: center;
@@ -162,13 +161,12 @@
         margin-left: 20%;
       }
 
-      &__searchbar-icon{
+      &__searchbar-icon {
         width: 32px;
         position: absolute;
         top: 25.5%;
         left: 70%;
       }
-
     }
   }
 }
@@ -205,7 +203,7 @@
 }
 
 .side-menu__list__item a:hover {
-  color: #ff6347;
+  color: #979797;
 }
 
 .overlay {
