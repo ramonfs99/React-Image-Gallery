@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
+import jumbotronBackground from "../assets/jumbotron-background.jpg"
 
 export const LayoutComponent = () => {
   const { pageTitle } = useAppContext();
@@ -21,7 +22,7 @@ export const LayoutComponent = () => {
           <div className="header__jumbotron__background-image-container">
             <img
               className="header__jumbotron__background-image-container__background-image"
-              src="src\assets\jumbotron-background.jpg"
+              src={jumbotronBackground}
               alt=""
             />
           </div>

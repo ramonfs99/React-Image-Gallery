@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { AppContext, useAppContext } from "../contexts/AppContext";
-
+import { useSelector } from 'react-redux';
 
 export const MyPhotosPage = () => {
-  const { images } = useContext(AppContext);
-  const { setPageTitle, storedImages } = useAppContext();
+  const storedImages = useSelector(state => state.images.storedImages);
+  const { setPageTitle } = useAppContext();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleClick = (index) => {

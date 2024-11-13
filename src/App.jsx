@@ -4,11 +4,13 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { MyPhotosPage } from "./pages/MyPhotosPage";
+import { Provider } from "react-redux";
 import { ContextProvider } from "./contexts/AppContext";
 import { LayoutComponent } from "./components/LayoutComponent";
+import { store } from "./store";
 
 export const  App = () => {
-  const reducerHandler = (state, action) => {
+  /*const reducerHandler = (state, action) => {
     console.log(state)
     console.log(action)
     if(action.type == "setImages"){
@@ -16,10 +18,11 @@ export const  App = () => {
     }
   }
 
-  const [state, dispatch] = useReducer(reducerHandler, "");
+  const [state, dispatch] = useReducer(reducerHandler, "");*/
 
   return (
-    <ContextProvider>
+    <Provider store={store}>
+      <ContextProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<LayoutComponent/>}>
@@ -28,7 +31,8 @@ export const  App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
-    </ContextProvider>
+      </ContextProvider>
+    </Provider>
   );
 }
 
