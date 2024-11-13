@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../contexts/AppContext";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleImage } from "../slices/ImageSlice";
+import { saveAs } from "file-saver";
 
 export const MyPhotosPage = () => {
   const storedImages = useSelector((state) => state.images.storedImages);
@@ -25,6 +26,12 @@ export const MyPhotosPage = () => {
     image.alt_description?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const downloadImageHandler = (imageUrl, imageDescription) =>{
+    const imageDescriptionFormatted = imageDescription.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') + '.jpg'
+    const fileName = imageDescription ? `${imageDescriptionFormatted}` : "downloaded-image.jpg";
+    saveAs(imageUrl, fileName)
+  } 
+
   return (
     <section className="images">
       {filteredStoredImages.map((image, index) => (
@@ -44,7 +51,7 @@ export const MyPhotosPage = () => {
             <img src=".\src\assets\icons\icons8-edit-96.png" alt="" />
           </button>
           <button className="images__image-container__button">
-            <img src=".\src\assets\icons\icons8-download-100.png" alt="" />
+            <img src=".\src\assets\icons\icons8-download-100.png" alt="" onClick={() => downloadImageHandler(image.urls.full, image.alt_description)}/>
           </button>
           <button
             className="images__image-container__button"
