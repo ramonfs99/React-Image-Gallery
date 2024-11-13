@@ -13,7 +13,7 @@ export const LayoutComponent = () => {
   const sideMenuRef = useRef(null);
 
   const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
+    setMenuOpen(prev => !prev);
   };
 
   const handleClickOutside = (e) => {
@@ -62,10 +62,13 @@ export const LayoutComponent = () => {
           <input
             type="text"
             className="header__jumbotron__searchbar"
+            placeholder="Search"
             onChange={searchChangeHandler}
           />
         </div>
       </header>
+
+      {menuOpen && <div className="overlay" onClick={toggleMenu}></div>}
 
       <div
         className={`side-menu ${menuOpen ? 'open' : ''}`}
