@@ -4,6 +4,15 @@ export const Modal = ({ image, onClose }) => {
   const [description, setDescription] = useState(image.alt_description || "");
 
   const handleSave = () => {
+    const storedImages = JSON.parse(localStorage.getItem("storedImages")) || [];
+
+    const updatedImages = storedImages.map((storedImage) => {
+        if (storedImage.id === image.id) {
+          return { ...storedImage, alt_description: description };
+        }
+        return storedImage;
+      });
+      localStorage.setItem("storedImages", JSON.stringify(updatedImages));
     onClose()
 };
 
@@ -16,7 +25,6 @@ return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="modal-content">
         <button className="modal-content__close-button" onClick={onClose}>×</button>
-        
         <img src={image.urls.raw} alt={description} className="modal-content__image" />
         <p><strong>Date added: </strong>{image.created_at}</p>
         <p><strong>Width: </strong>{image.width}px</p>

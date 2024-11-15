@@ -20,6 +20,8 @@ export const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const [sortCriteria, setSortCriteria] = useState("")
+
   const handleClick = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -57,10 +59,33 @@ export const HomePage = () => {
     setSelectedImage(null);
   };
 
+  const sortedImages = [...filteredImages].sort((a, b) => {
+    if (sortCriteria === "height") return b.height - a.height;
+    if (sortCriteria === "width") return b.width - a.width;
+    if (sortCriteria === "likes") return b.likes - a.likes;
+    if (sortCriteria === "created_at") return new Date(b.created_at) - new Date(a.created_at);
+    return 0;
+  });
+
+
   return (
     <>
+    <div className="sort-container">
+        <select
+          id="sort"
+          value={sortCriteria}
+          onChange={(e) => setSortCriteria(e.target.value)}
+        >
+          <option value="" disabled>Order by</option>
+          <option value="height">Height</option>
+          <option value="width">Width</option>
+          <option value="likes">Likes</option>
+          <option value="created_at">Date Added</option>
+        </select>
+      </div>
     <section className="images">
-      {filteredImages.map((image, index) => (
+
+      {sortedImages.map((image, index) => (
         <article
           className={`images__image-container ${
             activeIndex === index ? "active" : ""

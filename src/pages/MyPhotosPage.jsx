@@ -3,6 +3,7 @@ import { useAppContext } from "../contexts/AppContext";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleImage } from "../slices/ImageSlice";
 import { saveAs } from "file-saver";
+import { Modal } from "../components/ImageDetailModalComponent";
 
 export const MyPhotosPage = () => {
   const storedImages = useSelector((state) => state.images.storedImages);
@@ -10,6 +11,9 @@ export const MyPhotosPage = () => {
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = useState(null);
   const searchTerm = useSelector((state) => state.search.searchTerm);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleClick = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -26,6 +30,16 @@ export const MyPhotosPage = () => {
     image.alt_description?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleEditClick = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
+
   const downloadImageHandler = (imageUrl, imageDescription) =>{
     const imageDescriptionFormatted = imageDescription.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') + '.jpg'
     const fileName = imageDescription ? `${imageDescriptionFormatted}` : "downloaded-image.jpg";
@@ -33,6 +47,7 @@ export const MyPhotosPage = () => {
   } 
 
   return (
+    <>
     <section className="images">
       {filteredStoredImages.map((image, index) => (
         <article
@@ -47,7 +62,7 @@ export const MyPhotosPage = () => {
             src={image.urls.raw}
             alt={image.alt_description}
           />
-          <button className="images__image-container__button">
+          <button className="images__image-container__button" onClick={() => handleEditClick(image)}>
             <img src=".\src\assets\icons\icons8-edit-96.png" alt="" />
           </button>
           <button className="images__image-container__button">
@@ -69,5 +84,9 @@ export const MyPhotosPage = () => {
         </article>
       ))}
     </section>
+    {isModalOpen && (
+      <Modal image={selectedImage} onClose={handleCloseModal} />
+    )}
+    </>
   );
 };

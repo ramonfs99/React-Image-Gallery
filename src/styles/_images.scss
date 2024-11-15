@@ -1,10 +1,29 @@
+.sort-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  select {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    color: gray;
+  }
+}
 .images {
-    margin-top: 4%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding-left: 4%;
     padding-right: 4%;
+
+    
+    
+
     &__image-container {
       flex: 1 1 30%;
       width: 100%;
@@ -13,7 +32,6 @@
       height: 360px;
       margin-bottom: 60px;
       margin-inline: 20px;
-  
       transition: transform 0.3s ease-in-out;
       &__image {
         display: block;
@@ -85,6 +103,13 @@
       padding-left: 0;
       padding-right: 0;
       justify-content: center;
+      &__sort-container{
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        select{
+
+        }
+      }
       &__image-container{
         min-width: 100%;
         margin-left: 0px;

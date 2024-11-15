@@ -207,8 +207,24 @@ html, body {
   transition: opacity 0.3s ease;
 }
 
+.sort-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+}
+.sort-container select {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  color: gray;
+}
+
 .images {
-  margin-top: 4%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -281,6 +297,10 @@ html, body {
     padding-left: 0;
     padding-right: 0;
     justify-content: center;
+  }
+  .images__sort-container {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
   }
   .images__image-container {
     min-width: 100%;
