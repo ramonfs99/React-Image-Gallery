@@ -54,7 +54,7 @@ export const MyPhotosPage = () => {
     saveAs(imageUrl, fileName);
   };
 
-  const sortedImages = [...storedImages].sort((a, b) => {
+  const sortedImages = [...filteredStoredImages].sort((a, b) => {
     if (sortCriteria === "height") return b.height - a.height;
     if (sortCriteria === "width") return b.width - a.width;
     if (sortCriteria === "likes") return b.likes - a.likes;

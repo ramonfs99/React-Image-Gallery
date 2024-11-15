@@ -126,6 +126,5 @@ export const HomePage = () => {
         <Modal image={selectedImage} onClose={handleCloseModal} />
       )}
     </>
-    
   );
 };
