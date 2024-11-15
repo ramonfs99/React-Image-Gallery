@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleImage } from "../slices/ImageSlice";
 import { saveAs } from "file-saver";
 import { Modal } from "../components/ImageDetailModalComponent";
+import editIcon from "../assets/icons/icons8-edit-96.png";
+import downloadIcon from "../assets/icons/icons8-download-100.png";
+import heartIcon from "../assets/icons/icons8-heart-64.png";
+import dislikeIcon from "../assets/icons/icons8-dislike-96.png";
+
 
 export const MyPhotosPage = () => {
   const storedImages = useSelector((state) => state.images.storedImages);
@@ -97,12 +102,12 @@ export const MyPhotosPage = () => {
               className="images__image-container__button"
               onClick={() => handleEditClick(image)}
             >
-              <img src=".\src\assets\icons\icons8-edit-96.png" alt="" />
+              <img src={editIcon} alt="edit" />
             </button>
             <button className="images__image-container__button">
               <img
-                src=".\src\assets\icons\icons8-download-100.png"
-                alt=""
+                src={downloadIcon}
+                alt="download"
                 onClick={() =>
                   downloadImageHandler(image.urls.full, image.alt_description)
                 }
@@ -114,11 +119,11 @@ export const MyPhotosPage = () => {
             >
               {isImageStored(image.id) ? (
                 <img
-                  src=".\src\assets\icons\icons8-dislike-96.png"
+                  src={dislikeIcon}
                   alt="dislike"
                 />
               ) : (
-                <img src=".\src\assets\icons\icons8-heart-64.png" alt="heart" />
+                <img src={heartIcon} alt="heart" />
               )}
             </button>
           </article>
