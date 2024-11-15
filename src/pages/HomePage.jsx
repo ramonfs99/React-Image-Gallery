@@ -76,7 +76,7 @@ export const HomePage = () => {
           value={sortCriteria}
           onChange={(e) => setSortCriteria(e.target.value)}
         >
-          <option value="" disabled>Order by</option>
+          <option value="" disabled>Order by:</option>
           <option value="height">Height</option>
           <option value="width">Width</option>
           <option value="likes">Likes</option>

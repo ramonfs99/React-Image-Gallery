@@ -15,6 +15,8 @@ export const MyPhotosPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const [sortCriteria, setSortCriteria] = useState("");
+
   const handleClick = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -40,53 +42,91 @@ export const MyPhotosPage = () => {
     setSelectedImage(null);
   };
 
-  const downloadImageHandler = (imageUrl, imageDescription) =>{
-    const imageDescriptionFormatted = imageDescription.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') + '.jpg'
-    const fileName = imageDescription ? `${imageDescriptionFormatted}` : "downloaded-image.jpg";
-    saveAs(imageUrl, fileName)
-  } 
+  const downloadImageHandler = (imageUrl, imageDescription) => {
+    const imageDescriptionFormatted =
+      imageDescription
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w-]/g, "") + ".jpg";
+    const fileName = imageDescription
+      ? `${imageDescriptionFormatted}`
+      : "downloaded-image.jpg";
+    saveAs(imageUrl, fileName);
+  };
+
+  const sortedImages = [...storedImages].sort((a, b) => {
+    if (sortCriteria === "height") return b.height - a.height;
+    if (sortCriteria === "width") return b.width - a.width;
+    if (sortCriteria === "likes") return b.likes - a.likes;
+    if (sortCriteria === "created_at")
+      return new Date(b.created_at) - new Date(a.created_at);
+    return 0;
+  });
 
   return (
     <>
-    <section className="images">
-      {filteredStoredImages.map((image, index) => (
-        <article
-          className={`images__image-container ${
-            activeIndex === index ? "active" : ""
-          }`}
-          onClick={() => handleClick(index)}
-          key={image.id}
+      <div className="sort-container">
+        <select
+          id="sort"
+          value={sortCriteria}
+          onChange={(e) => setSortCriteria(e.target.value)}
         >
-          <img
-            className="images__image-container__image"
-            src={image.urls.raw}
-            alt={image.alt_description}
-          />
-          <button className="images__image-container__button" onClick={() => handleEditClick(image)}>
-            <img src=".\src\assets\icons\icons8-edit-96.png" alt="" />
-          </button>
-          <button className="images__image-container__button">
-            <img src=".\src\assets\icons\icons8-download-100.png" alt="" onClick={() => downloadImageHandler(image.urls.full, image.alt_description)}/>
-          </button>
-          <button
-            className="images__image-container__button"
-            onClick={() => dispatch(toggleImage(image))}
+          <option value="" disabled>Order by:</option>
+          <option value="height">Height</option>
+          <option value="width">Width</option>
+          <option value="likes">Likes</option>
+          <option value="created_at">Date Added</option>
+        </select>
+      </div>
+
+      <section className="images">
+        {sortedImages.map((image, index) => (
+          <article
+            className={`images__image-container ${
+              activeIndex === index ? "active" : ""
+            }`}
+            onClick={() => handleClick(index)}
+            key={image.id}
           >
-            {isImageStored(image.id) ? (
+            <img
+              className="images__image-container__image"
+              src={image.urls.raw}
+              alt={image.alt_description}
+            />
+            <button
+              className="images__image-container__button"
+              onClick={() => handleEditClick(image)}
+            >
+              <img src=".\src\assets\icons\icons8-edit-96.png" alt="" />
+            </button>
+            <button className="images__image-container__button">
               <img
-                src=".\src\assets\icons\icons8-dislike-96.png"
-                alt="dislike"
+                src=".\src\assets\icons\icons8-download-100.png"
+                alt=""
+                onClick={() =>
+                  downloadImageHandler(image.urls.full, image.alt_description)
+                }
               />
-            ) : (
-              <img src=".\src\assets\icons\icons8-heart-64.png" alt="heart" />
-            )}
-          </button>
-        </article>
-      ))}
-    </section>
-    {isModalOpen && (
-      <Modal image={selectedImage} onClose={handleCloseModal} />
-    )}
+            </button>
+            <button
+              className="images__image-container__button"
+              onClick={() => dispatch(toggleImage(image))}
+            >
+              {isImageStored(image.id) ? (
+                <img
+                  src=".\src\assets\icons\icons8-dislike-96.png"
+                  alt="dislike"
+                />
+              ) : (
+                <img src=".\src\assets\icons\icons8-heart-64.png" alt="heart" />
+              )}
+            </button>
+          </article>
+        ))}
+      </section>
+      {isModalOpen && (
+        <Modal image={selectedImage} onClose={handleCloseModal} />
+      )}
     </>
   );
 };
