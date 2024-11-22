@@ -49,11 +49,6 @@ export const HomePage = () => {
     saveAs(imageUrl, fileName);
   };
 
-  const handleEditClick = (image) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
-  };
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedImage(null);
@@ -90,17 +85,15 @@ export const HomePage = () => {
           className={`images__image-container ${
             activeIndex === index ? "active" : ""
           }`}
-          onClick={() => handleClick(index)}
+          
           key={image.id}
         >
           <img
             className="images__image-container__image"
             src={image.urls.small}
             alt={image.alt_description}
+            onClick={() => handleClick(index)}
           />
-          <button className="images__image-container__button" onClick={() => handleEditClick(image)}>
-            <img src={editIcon} alt="edit" />
-          </button>
           <button
             className="images__image-container__button"
             onClick={() =>

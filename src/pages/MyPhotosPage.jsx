@@ -90,13 +90,13 @@ export const MyPhotosPage = () => {
             className={`images__image-container ${
               activeIndex === index ? "active" : ""
             }`}
-            onClick={() => handleClick(index)}
             key={image.id}
           >
             <img
               className="images__image-container__image"
               src={image.urls.small}
               alt={image.alt_description}
+              onClick={() => handleClick(index)}
             />
             <button
               className="images__image-container__button"
