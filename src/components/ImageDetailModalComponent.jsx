@@ -25,7 +25,7 @@ return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="modal-content">
         <button className="modal-content__close-button" onClick={onClose}>×</button>
-        <img src={image.urls.raw} alt={description} className="modal-content__image" />
+        <img src={image.urls.small} alt={description} className="modal-content__image" />
         <p><strong>Date added: </strong>{image.created_at}</p>
         <p><strong>Width: </strong>{image.width}px</p>
         <p><strong>Height: </strong>{image.height}px</p>

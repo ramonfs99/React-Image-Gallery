@@ -95,7 +95,7 @@ export const HomePage = () => {
         >
           <img
             className="images__image-container__image"
-            src={image.urls.raw}
+            src={image.urls.small}
             alt={image.alt_description}
           />
           <button className="images__image-container__button" onClick={() => handleEditClick(image)}>

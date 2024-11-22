@@ -95,7 +95,7 @@ export const MyPhotosPage = () => {
           >
             <img
               className="images__image-container__image"
-              src={image.urls.raw}
+              src={image.urls.small}
               alt={image.alt_description}
             />
             <button
